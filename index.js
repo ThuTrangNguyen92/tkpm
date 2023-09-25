@@ -6,7 +6,6 @@ const port = process.env.PORT || 5001;
 const expressHandlebars = require('express-handlebars');
 
 
-
 app.use(express.static(__dirname+'/public'));
 
 app.engine('hbs',expressHandlebars.engine({
