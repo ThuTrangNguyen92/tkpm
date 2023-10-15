@@ -7,9 +7,7 @@ const expressHandlebars = require('express-handlebars');
 
 app.use(express.static(__dirname+'/public'));
 
-app.get('/', (req,res)=>{
-    res.send('Hello');
-})
+
 app.engine('hbs',expressHandlebars.engine({
     layoutDir: __dirname + '/views/layouts',
     partialsDir: __dirname + '/views/partials',
@@ -24,6 +22,18 @@ app.engine('hbs',expressHandlebars.engine({
     
 }));
 app.set('view engine','hbs');
+
+app.get('/',(req,res)=>{
+    res.render('index');
+});
+app.get('/:page',(req,res)=>{
+    res.render(req.params.page);
+});
+
+//routes
+app.use('/',require('./routes/indexRouter'));
+app.use('/recipes', require('./routes/recipesRouter'));
+
 
 
 app.listen(port,()=>{
