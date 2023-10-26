@@ -1,0 +1,88 @@
+<style>
+form {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+/* Style the labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+
+}
+
+/* Style the input fields */
+input[type="text"],
+input[type="tel"]
+{
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f2f2f2;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Change the color of the submit button on hover */
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Center the submit button */
+form {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+
+</style>
+
+<form id="pickup-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="phone">Phone:</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="name">Type of car:</label>
+  <input type="text" id="car-type" name="car-type" required>
+
+  <label for="pickup-location">Pickup Location:</label>
+  <input type="text" id="pickup-location" name="pickup-location" required>
+  <button onclick="getLocation()">Use Current Location</button>
+
+  <label for="dropoff-location">Dropoff Location:</label>
+  <input type="text" id="dropoff-location" name="dropoff-location" required>
+
+  <button type="submit">Book Now</button>
+</form>
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  var location = latitude + ", " + longitude;
+  
+  document.getElementById("pickup-location").value = location;
+}
+</script>

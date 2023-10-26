@@ -1,0 +1,22 @@
+<script>
+    // Create a new info window
+var infoWindow = new google.maps.InfoWindow({
+  content: '<div><strong>Passenger Name:</strong> John Doe</div>' +
+           '<div><strong>Pickup Location:</strong> 123 Main St, San Francisco, CA</div>' +
+           '<div><strong>Distance from Driver:</strong> 2.5 miles</div>'
+});
+
+// Attach the info window to a marker
+var marker = new google.maps.Marker({
+  position: {lat: 37.7749, lng: -122.4194},
+  map: map,
+  title: 'Passenger Pickup Point'
+});
+
+// Add a click event listener to the marker
+marker.addListener('click', function() {
+  // Open the info window when the marker is clicked
+  infoWindow.open(map, marker);
+});
+
+</script>
